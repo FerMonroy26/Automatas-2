@@ -1,0 +1,27 @@
+import json
+
+def leer_json(nombre_archivo):
+    with open(nombre_archivo, 'r') as archivo:
+        datos = json.load(archivo)
+    return datos
+
+def main():
+    nombre_archivo = 'datos.json'
+    datos = leer_json(nombre_archivo)
+
+    print("Datos del archivo JSON:")
+    print("Nombre:", datos["nombre"])
+    print("Edad:", datos["edad"])
+    print("Ciudad:", datos["ciudad"])
+
+    # Modificar datos
+    nueva_edad = int(input("Ingrese la nueva edad: "))
+    datos["edad"] = nueva_edad
+
+    # Escribir de nuevo al archivo
+    with open(nombre_archivo, 'w') as archivo:
+        json.dump(datos, archivo, indent=4)
+    print("Edad actualizada en el archivo JSON.")
+
+if __name__ == "__main__":
+    main()
